@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const https = require('https');
 
 try {
 	const statuses = {
@@ -23,10 +24,7 @@ try {
 
     const message = `${statuses[status]} Build ${status}, branch: ${branch}`;
 	var url = `https://api.telegram.org/bot${botId}/sendMessage?chat_id=${chatId}text=${message}&parse_mode=MarkdownV2`;
-    
-    var oReq = new XMLHttpRequest();
-    oReq.open("GET", url, true);
-    oReq.send();
+    https.get(url, r=> console.log(r));
 } catch (error) {
   	core.setFailed(error.message);
 }
