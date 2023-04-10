@@ -6,7 +6,7 @@ try {
 		"started": "❕", 
 		"failure": "❗",
 		"success": "✅", 
-		"canceled": "❕"
+		"cancelled": "❕"
 	};
 	
 	const status = core.getInput('status');
