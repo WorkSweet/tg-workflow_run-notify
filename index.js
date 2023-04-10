@@ -22,8 +22,8 @@ try {
 	if(!branch) throw Error("Branch not found");
 
     let apiUrl = "https://api.telegram.org/bot{botId}/sendMessage".replace("{botId}", botId);
-	import("node-fetch").then(f=> {
-		fetch(apiUrl, {
+	import("node-fetch").then(f => {
+		f(apiUrl, {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
