@@ -23,7 +23,7 @@ try {
 
     let apiUrl = "https://api.telegram.org/bot{botId}/sendMessage".replace("{botId}", botId);
 	import("node-fetch").then(f => {
-		f(apiUrl, {
+		f.default(apiUrl, {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
