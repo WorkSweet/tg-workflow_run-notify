@@ -34,7 +34,7 @@ try {
 				"text": `${statuses[status]} Build ${status}, branch: ${branch}`,
 				"parse_mode": "MarkdownV2"
 			}
-		});
+		}).then(r=> console.log(r)).catch(e=> console.log(e));
 	});
 } catch (error) {
   	core.setFailed(error.message);
