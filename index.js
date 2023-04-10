@@ -8,12 +8,13 @@ try {
 		"success": "✅", 
 		"canceled": "❕"
 	};
+	
 	const status = core.getInput('status');
 	if(!statuses[status]) throw Error("Status not found!");
 
 	const botId = core.getInput("token");
 	if(!botId) throw Error("Token not found!");
-	
+
 	const chatId = core.getInput("to");
 	if(!chatId) throw Error("Chat Id not found");
 
