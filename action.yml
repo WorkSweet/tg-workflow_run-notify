@@ -10,6 +10,9 @@ inputs:
   status:
     description: 'status ["started", "failure", "success", "canceled"]'
     required: true
+  branch: 
+    description: 'branch name'
+    required: true
 runs:
   using: 'node16'
   main: 'index.js'

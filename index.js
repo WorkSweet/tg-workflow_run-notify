@@ -18,6 +18,9 @@ try {
 	const chatId = core.getInput("to");
 	if(!chatId) throw Error("Chat Id not found");
 
+	const branch = core.getInput("branch");
+	if(!branch) throw Error("Branch not found");
+
     let apiUrl = "https://api.telegram.org/bot{botId}/sendMessage".replace("{botId}", botId);
 	import("node-fetch").then(f=> {
 		f.fetch(apiUrl, {
@@ -28,7 +31,7 @@ try {
 			},
 			body: {
 				"chat_id": chatId,
-				"text": `${statuses[status]} Build ${status}, branch: ${github.event.workflow_run.head_branch}`,
+				"text": `${statuses[status]} Build ${status}, branch: ${branch}`,
 				"parse_mode": "MarkdownV2"
 			}
 		});
