@@ -1,7 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const https = require('https');
-
+const axios = require('axios')
 try {
 	const statuses = {
 		"started": "❕", 
@@ -22,9 +21,12 @@ try {
 	const branch = core.getInput("branch");
 	if(!branch) throw Error("Branch not found");
 
-    const message = `${statuses[status]} Build ${status}, branch: ${branch}`;
-	var url = `https://api.telegram.org/bot${botId}/sendMessage?chat_id=${chatId}text=${message}&parse_mode=MarkdownV2`;
-    https.get(url, r=> console.log(r));
+    let apiUrl = "https://api.telegram.org/bot{botId}/sendMessage".replace("{botId}", botId);
+	axios.post(apiUrl,{
+				"chat_id": chatId,
+				"text": `${statuses[status]} Build ${status}, branch: ${branch}`,
+				"parse_mode": "MarkdownV2"
+			}).then(r=> console.log(r)).catch(e=> console.log(e));
 } catch (error) {
   	core.setFailed(error.message);
 }
