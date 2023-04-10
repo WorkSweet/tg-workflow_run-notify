@@ -1,8 +1,6 @@
-import fetch from 'node-fetch';
-
 const core = require('@actions/core');
 const github = require('@actions/github');
-
+const nfetch = require('node-fetch');
 try {
 	const statuses = {
 		"started": "❕", 
@@ -21,7 +19,7 @@ try {
 	if(!chatId) throw Error("Chat Id not found");
 
     let apiUrl = "https://api.telegram.org/bot{botId}/sendMessage".replace("{botId}", botId);
-	fetch(apiUrl, {
+	nfetch.fetch(apiUrl, {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
