@@ -22,11 +22,11 @@ try {
 	if(!branch) throw Error("Branch not found");
 
     let apiUrl = "https://api.telegram.org/bot{botId}/sendMessage".replace("{botId}", botId);
-	axios.post(apiUrl,{
-				"chat_id": chatId,
-				"text": `${statuses[status]} Build ${status}, branch: ${branch}`,
-				"parse_mode": "MarkdownV2"
-			}).then(r=> console.log(r)).catch(e=> console.log(e));
+	axios.post(apiUrl, {
+		"chat_id": chatId,
+		"text": `${statuses[status]} Build ${status}, branch: ${branch}`,
+		"parse_mode": "MarkdownV2"
+	}).then(r => console.log(r)).catch(e => console.log(e));
 } catch (error) {
   	core.setFailed(error.message);
 }
