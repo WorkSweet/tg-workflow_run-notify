@@ -21,21 +21,12 @@ try {
 	const branch = core.getInput("branch");
 	if(!branch) throw Error("Branch not found");
 
-    let apiUrl = "https://api.telegram.org/bot{botId}/sendMessage".replace("{botId}", botId);
-	import("node-fetch").then(f => {
-		f.default(apiUrl, {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: {
-				"chat_id": chatId,
-				"text": `${statuses[status]} Build ${status}, branch: ${branch}`,
-				"parse_mode": "MarkdownV2"
-			}
-		}).then(r=> console.log(r)).catch(e=> console.log(e));
-	});
+    const message = `${statuses[status]} Build ${status}, branch: ${branch}`;
+	var url = `https://api.telegram.org/bot${botId}/sendMessage?chat_id=${chatId}text=${message}&parse_mode=MarkdownV2`;
+    
+    var oReq = new XMLHttpRequest();
+    oReq.open("GET", url, true);
+    oReq.send();
 } catch (error) {
   	core.setFailed(error.message);
 }
