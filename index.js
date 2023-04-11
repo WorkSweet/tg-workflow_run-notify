@@ -26,7 +26,6 @@ try {
     let apiUrl = "https://api.telegram.org/bot{botId}/sendMessage".replace("{botId}", botId);
 
 	const { eventName, workflow, job, runId, actor, ref, sha } = github.context;
-	console.log(github.context.payload);
 	const { owner, repo } = github.context.repo;
 	const shortRef = ref.replace(/^refs\/heads\//, '');
 	const shortSha = sha.slice(0, 7);
@@ -37,7 +36,7 @@ try {
 	const jobE = escapeEntities(job);
 	const actorE = escapeEntities(actor);
 	const eventNameE = escapeEntities(eventName);
-	const link = `https://github.com/${owner}/${repo}/actions/runs/${runId}`;
+	const link = `https://github.com/${owner}/${repo}/actions/runs/${github.context.payload.workflow_run.id}`;
 	const text = `
 *${a}* ${shortRefE}\\(${shortSha}\\)
 ${workflowE} ${jobE} ${status}
