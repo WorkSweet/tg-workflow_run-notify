@@ -1,6 +1,8 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const axios = require('axios')
+const axios = require('axios');
+const charsNeedEscape = '_*[]()~`>#+-=|{}.!';
+
 try {
 	const statuses = {
 		"started": "❕", 
@@ -49,7 +51,7 @@ Triggered by ${actorE} with a ${eventNameE} event
 } catch (error) {
   	core.setFailed(error.message);
 }
-const charsNeedEscape = '_*[]()~`>#+-=|{}.!';
+
 function escapeEntities(input) {
   const len = input.length;
   let output = '';
