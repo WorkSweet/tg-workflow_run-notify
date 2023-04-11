@@ -29,9 +29,9 @@ try {
 
 	axios.post(apiUrl, {
 		"chat_id": chatId,
-		"text": `${statuses[status]} Build ${status}, branch: ${branch}. [View details](${link})` ,
+		"text": `${statuses[status]} Build ${status}, branch: ${branch} [View details](${link})` ,
 		"parse_mode": "MarkdownV2"
-	}).then(r => console.log(r)).catch(e => console.log(e));
+	}).then(r => console.log(r));
 } catch (error) {
   	core.setFailed(error.message);
 }
