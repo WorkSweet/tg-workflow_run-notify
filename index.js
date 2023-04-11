@@ -49,7 +49,7 @@ Triggered by ${actorE} with a ${eventNameE} event
 } catch (error) {
   	core.setFailed(error.message);
 }
-
+const charsNeedEscape = '_*[]()~`>#+-=|{}.!';
 function escapeEntities(input) {
   const len = input.length;
   let output = '';
