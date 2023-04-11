@@ -24,7 +24,7 @@ try {
     let apiUrl = "https://api.telegram.org/bot{botId}/sendMessage".replace("{botId}", botId);
 
 	const { eventName, workflow, job, runId, actor, ref, sha } = github.context;
-	const { owner, repo } = context.repo;
+	const { owner, repo } = github.context.repo;
 	const shortRef = ref.replace(/^refs\/heads\//, '');
 	const shortSha = sha.slice(0, 7);
 
