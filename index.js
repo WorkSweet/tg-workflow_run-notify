@@ -29,7 +29,7 @@ try {
 
 	axios.post(apiUrl, {
 		"chat_id": chatId,
-		"text": `${statuses[status]} Build ${status}, branch: ${branch} [View details](${link})` ,
+		"text": `${statuses[status]} Build ${status}, branch: ${branch} [Details](${link})` ,
 		"parse_mode": "MarkdownV2"
 	}).then(r => console.log(r));
 } catch (error) {
